@@ -8,6 +8,7 @@ import PlatformSelector from './components/PlatformSelector';
 import { Platform } from './hooks/usePlatforms';
 import SortSelector from './components/SortSelector';
 import GameHeading from './components/GameHeading';
+import GenreSelector from './components/GenreSelector';
 
 export interface GameQuery {
   genre: Genre | null;
@@ -42,6 +43,11 @@ const App = () => {
         <Box paddingLeft={2}>
           <GameHeading gameQuery={gameQuery} />
           <Flex marginBottom={5}>
+            <Show below='lg'>
+              <Box marginRight={5}>
+                <GenreSelector selectedGenre={gameQuery.genre} onSelectGenre={(genre) => setGameQuery({ ...gameQuery, genre })} />
+              </Box>
+            </Show>
             <Box marginRight={5}>
               <PlatformSelector
                 selectedPlatform={gameQuery.platform}
